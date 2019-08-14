@@ -16,6 +16,7 @@
 
 package org.archive.porky;
 import java.io.IOException;
+import java.util.Properties;
 import org.apache.pig.EvalFunc;
 import org.apache.pig.data.Tuple;
 import org.apache.pig.impl.util.WrappedIOException;
@@ -89,7 +90,9 @@ public class NER3ClassUDF extends EvalFunc<String> {
 		
 		if(classifier == null) {
 			//initialize
-			classifier = CRFClassifier.getClassifier(serializedClassifier);
+			Properties props = new Properties();
+			props.setProperty("tokenizerOptions", "untokenizable=noneDelete");
+			classifier = CRFClassifier.getClassifier(serializedClassifier, props);
 		}
 		
 		List<List<CoreLabel>> out = classifier.classify(textString);
