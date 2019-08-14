@@ -58,7 +58,7 @@ import java.util.concurrent.TimeUnit;
 public class NER3ClassUDF extends EvalFunc<String> {
 	
   String serializedClassifier;
-  AbstractSequenceClassifier<CoreLabel> classifier = null;
+  CRFClassifier classifier = null;
 
   public NER3ClassUDF(String file) {
   	serializedClassifier = file;
