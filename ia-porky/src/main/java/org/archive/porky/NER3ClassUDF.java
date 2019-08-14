@@ -91,7 +91,7 @@ public class NER3ClassUDF extends EvalFunc<String> {
 		if(classifier == null) {
 			//initialize
 			Properties props = new Properties();
-			props.setProperty("tokenize.options", "untokenizable=noneDelete");
+			props.put("tokenizerOptions", "untokenizable=noneDelete");
 			classifier = CRFClassifier.getClassifier(serializedClassifier, props);
 		}
 		
